@@ -32,9 +32,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/CrawlCove/crawlcove-hreflang-checker.git"
+    "url": "https://github.com/CrawlCove/hreflang-checker.git"
   },
-  "homepage": "https://crawlcove.com/tools/hreflang-checker?utm_source=github&utm_medium=crawlcove-hreflang-checker",
+  "homepage": "https://crawlcove.com/tools/hreflang-checker?utm_source=github&utm_medium=hreflang-checker",
   "dependencies": {
     "commander": "^15.0.0",
     "fast-xml-parser": "^5.11.1"
