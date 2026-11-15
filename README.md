@@ -1,3 +1,5 @@
+<a href="https://crawlcove.com/download?utm_source=github&utm_medium=readme&utm_campaign=hreflang-checker"><img src="https://raw.githubusercontent.com/CrawlCove/.github/main/banners/hreflang-checker.svg" width="1200" alt="hreflang-checker: Validate the hreflang tags on a page or across a whole XML sitemap, including self-reference, x-default and return tags." /></a>
+
 # crawlcove-hreflang-checker
 
 An hreflang checker for the command line: read a page's hreflang annotations from both places Google looks (the `<link rel="alternate" hreflang>` tags in its `<head>` and the HTTP `Link` response header), or every `<xhtml:link>` annotation in an XML sitemap, then validate the language and region codes, confirm a self-referencing tag and `x-default`, fetch each alternate to confirm its return tag, and flag the two things that make a correct set get ignored anyway: a `noindex` on the page and a canonical pointing somewhere else. Non-zero exit code for CI.
