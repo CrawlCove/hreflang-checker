@@ -1,10 +1,36 @@
 <a href="https://crawlcove.com/download?utm_source=github&utm_medium=readme&utm_campaign=hreflang-checker"><img src="https://raw.githubusercontent.com/CrawlCove/.github/main/banners/hreflang-checker.svg" width="1200" alt="hreflang-checker: Validate the hreflang tags on a page or across a whole XML sitemap, including self-reference, x-default and return tags." /></a>
 
-# crawlcove-hreflang-checker
+# hreflang-checker
 
-An hreflang checker for the command line: read a page's hreflang annotations from both places Google looks (the `<link rel="alternate" hreflang>` tags in its `<head>` and the HTTP `Link` response header), or every `<xhtml:link>` annotation in an XML sitemap, then validate the language and region codes, confirm a self-referencing tag and `x-default`, fetch each alternate to confirm its return tag, and flag the two things that make a correct set get ignored anyway: a `noindex` on the page and a canonical pointing somewhere else. Non-zero exit code for CI.
+An **hreflang checker** CLI: read a page's hreflang annotations from both places Google looks (the `<link rel="alternate" hreflang>` tags in its `<head>` and the HTTP `Link` response header), or every `<xhtml:link>` annotation in an XML sitemap, then validate the language and region codes, confirm a self-referencing tag and `x-default`, fetch each alternate to confirm its return tag, and flag the two things that make a correct set get ignored anyway: a `noindex` on the page and a canonical pointing somewhere else. Non-zero exit code for CI.
 
 Prefer a form? The same check runs in the browser at [crawlcove.com/tools/hreflang-checker](https://crawlcove.com/tools/hreflang-checker?utm_source=github&utm_medium=hreflang-checker).
+
+<img src="docs/demo.svg" width="980" alt="Terminal recording: checking the English page of the SEO test site finds the French alternate does not link back and no x-default">
+
+*Recorded from a real run against [seo-test-site](https://github.com/CrawlCove/seo-test-site), a public site with 54 planted SEO problems that you can test against too.*
+
+## Quick start
+
+```sh
+npx github:CrawlCove/hreflang-checker https://crawlcove.github.io/seo-test-site/intl/en/
+```
+
+```
+https://crawlcove.github.io/seo-test-site/intl/en/
+  HTTP 200, 3 hreflang tag(s)
+  ✓ en         https://crawlcove.github.io/seo-test-site/intl/en/  [html]
+  ✓ fr         https://crawlcove.github.io/seo-test-site/intl/fr/  [html]
+  ✓ de         https://crawlcove.github.io/seo-test-site/intl/de/  [html]
+  self-referencing: yes   x-default: no   return tags checked: 2/2
+  ✗ NO RETURN   fr         https://crawlcove.github.io/seo-test-site/intl/fr/  (its own hreflang tags do not list this page)
+  ✓ links back  de         https://crawlcove.github.io/seo-test-site/intl/de/
+
+  ! missing-x-default: No x-default tag. Without one, visitors whose language matches nothing in the set get whatever Google picks.
+  ✗ missing-return-tag: https://crawlcove.github.io/seo-test-site/intl/fr/ (hreflang="fr") does not link back to https://crawlcove.github.io/seo-test-site/intl/en/. Both pages must reference each other or Google ignores the pair.
+
+1 error(s), 1 warning(s).
+```
 
 ## Install
 
@@ -35,7 +61,7 @@ hreflang-checker <url> [options]
 
 Page mode fetches the URL, reads its tags, then fetches each distinct alternate (capped, 4 at a time) and looks for a tag pointing back. Sitemap mode needs no per-page fetch: sitemap hreflang must declare the whole cluster on every entry, so return tags are checked by cross-referencing the entries against each other. A sitemap index is followed into its first 5 children.
 
-Example — a localised page whose German version was moved without updating the German page's own tags:
+Example: a localised page whose German version was moved without updating the German page's own tags:
 
 ```
 $ hreflang-checker https://www.example.com/en-gb/
@@ -64,7 +90,7 @@ Exit codes: `0` clean (or only warnings with the default `--fail-on error`), `1`
 | `fetch-error` | error | The page or sitemap could not be read (DNS, TLS, timeout, 4xx/5xx). | Make the URL reachable; the same failure hides the tags from Google. |
 | `no-hreflang` | warning (page) / error (sitemap) | No annotations found in the head, the Link header, or any `<url>` entry. | If the page is localised, add the tags; if not, nothing to do. |
 | `invalid-code` | error | A code Google cannot parse is ignored: `en_US` (underscore), `en-uk` (no such region; the UK is `gb`), `english`, `zz`. | Use ISO 639-1 language + optional ISO 3166-1 region, hyphenated: `en-gb`, `fr-ca`, `zh-Hant-TW`. |
-| `suspicious-code` | warning | Valid but probably not what was meant — `uk` is Ukrainian, not the United Kingdom. | Check the intent; British English is `en-gb`. |
+| `suspicious-code` | warning | Valid but probably not what was meant. `uk` is Ukrainian, not the United Kingdom. | Check the intent; British English is `en-gb`. |
 | `relative-href` | error | Google requires absolute URLs in hreflang, scheme included. | Write the full URL. |
 | `missing-self-reference` | error | Every page in a cluster must list itself; without it Google ignores the whole set on that page. | Add a tag whose href is the page's own URL. |
 | `missing-x-default` | warning | Without `x-default`, visitors matching no listed language get whichever version Google picks. | Add `hreflang="x-default"` pointing at the language-selector or your default version. |
@@ -82,25 +108,32 @@ Exit codes: `0` clean (or only warnings with the default `--fail-on error`), `1`
 
 ## Works with CrawlCove
 
-This checks one page's cluster, or one sitemap. [Crawl Cove](https://crawlcove.com/?utm_source=github&utm_medium=hreflang-checker), the desktop SEO crawler for Windows and Mac, runs the same hreflang check across a whole-site crawl: every localised page, every missing return tag, alternates pointing at non-indexable pages, tracked over time.
+This checks one page's cluster, or one sitemap. [Crawl Cove](https://crawlcove.com/?utm_source=github&utm_medium=hreflang-checker), the desktop SEO crawler, runs the same hreflang check across a whole-site crawl: every localised page, every missing return tag, alternates pointing at non-indexable pages, tracked over time.
 
 This repo has its own page on crawlcove.com: [Crawl Cove hreflang checker CLI](https://crawlcove.com/open-source/crawlcove-hreflang-checker?utm_source=github&utm_medium=hreflang-checker).
 
 ## Related tools
 
-- [crawlcove-js](https://github.com/CrawlCove/seo-crawl-export-js) — `crawlcove-export`, a typed JavaScript/TypeScript library to load, query and convert Crawl Cove exports.
-- [crawlcove-sheets](https://github.com/CrawlCove/seo-audit-google-sheets) — Google Sheets add-on that turns a Crawl Cove export into an audit workbook (issues by type, pages by status, title/meta flags).
-- [crawlcove-sf-import](https://github.com/CrawlCove/screaming-frog-export-converter) — convert a Screaming Frog export into the Crawl Cove export format, with a report of what carried over.
-- [crawlcove-schema-validator](https://github.com/CrawlCove/schema-markup-validator) — validate a page's JSON-LD against Google's required and recommended rich-result properties.
-- [crawlcove-sitemap-validator](https://github.com/CrawlCove/xml-sitemap-validator) — validate an XML sitemap or sitemap index against the protocol and search-engine limits.
-- [crawlcove-robots-txt-tester](https://github.com/CrawlCove/robots-txt-tester) — lint a robots.txt and test which URLs each crawler may fetch.
-- [crawlcove-redirect-chain-checker](https://github.com/CrawlCove/redirect-chain-checker) — follow every hop of a URL's redirects; flags chains, loops, HTTPS downgrades and meta refreshes.
-- [crawlcove-cli](https://github.com/CrawlCove/seo-crawler-cli) — headless whole-site crawl with redirect-chain, broken-link, title and noindex checks.
-- [crawlcove-action](https://github.com/CrawlCove/seo-audit-action) — the same checks as a GitHub Action on every PR.
-- [crawlcove-mcp](https://github.com/CrawlCove/seo-mcp-server) — crawl data for Claude, Cursor and other AI assistants.
-- [crawlcove-export-spec](https://github.com/CrawlCove/seo-crawl-export-spec) — the JSON Schema for Crawl Cove's crawl export.
-- [seo-chrome-extension](https://github.com/CrawlCove/seo-chrome-extension) — Chrome extension: on-page SEO check of the current tab plus AI answer visibility (which AI crawlers may read it, snippet blocks, llms.txt, extractability score).
+<!-- related:start (generated by CrawlCove/.github scripts/related.mjs) -->
+| Repo | What it does |
+|---|---|
+| [seo-crawler-cli](https://github.com/CrawlCove/seo-crawler-cli) | Crawl a site from a script or CI. Checks status codes, redirect chains, titles, meta descriptions, H1s, canonicals, noindex and broken links, and fails the build on regressions. |
+| [seo-audit-action](https://github.com/CrawlCove/seo-audit-action) | Crawl a staging or preview URL on every pull request. Fails the check on broken links, missing titles, noindex and redirect chains, with the details as a PR comment. |
+| [seo-mcp-server](https://github.com/CrawlCove/seo-mcp-server) | Crawl a site, list SEO issues, inspect pages and find broken links from inside Claude, Cursor and other AI assistants. |
+| [claude-seo-plugin](https://github.com/CrawlCove/claude-seo-plugin) | Seven SEO skills for Claude Code backed by a real site crawl: audits, broken links, redirects, titles and fixes, from a chat. |
+| [seo-chrome-extension](https://github.com/CrawlCove/seo-chrome-extension) | On-page SEO checker with an AI visibility report: which AI crawlers can read the page, snippet blocks, llms.txt and extractability. Nothing leaves the browser. |
+| [xml-sitemap-validator](https://github.com/CrawlCove/xml-sitemap-validator) | Check a sitemap or sitemap index against the sitemaps.org protocol and search engine limits. Flags bad URLs, lastmod dates and cross-host entries. |
+| [robots-txt-tester](https://github.com/CrawlCove/robots-txt-tester) | Fetch and lint a robots.txt, test which URLs each crawler may fetch and see the deciding line. Fails deploys that block the site. |
+| [redirect-chain-checker](https://github.com/CrawlCove/redirect-chain-checker) | Follow every hop of a URL's redirects and flag chains, loops, HTTPS downgrades, meta refreshes and redirects to error pages. |
+| [schema-markup-validator](https://github.com/CrawlCove/schema-markup-validator) | Check every schema.org node on a page against the required and recommended properties for rich results. |
+| [seo-test-site](https://github.com/CrawlCove/seo-test-site) | A deliberately broken SEO test site with 54 planted problems and the expected findings, for testing any SEO crawler. |
+| [seo-crawl-export-spec](https://github.com/CrawlCove/seo-crawl-export-spec) | An open format for site crawl data: JSON Schema and CSV column reference, with a real sample export and a validator script. |
+| [seo-crawl-export-js](https://github.com/CrawlCove/seo-crawl-export-js) | Load, query and convert site crawl data in JavaScript and TypeScript, with typed pages, issues by type and status filters. |
+| [screaming-frog-export-converter](https://github.com/CrawlCove/screaming-frog-export-converter) | Turn an SEO Spider internal_all.csv into the open JSON crawl export format, with a report of which columns carried over. |
+| [seo-audit-google-sheets](https://github.com/CrawlCove/seo-audit-google-sheets) | An Apps Script add-on that turns a site crawl export into an audit workbook: pages, issues by type, pages by status and title and meta flags. |
+| [wordpress-seo-connector](https://github.com/CrawlCove/wordpress-seo-connector) | Bulk-apply fixes from the Crawl Cove desktop crawler to Yoast SEO, Rank Math, SEOPress or AIOSEO, with a change log and one-click revert. |
+<!-- related:end -->
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT, see [LICENSE](LICENSE).

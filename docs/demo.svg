@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="450" viewBox="0 0 980 450" role="img" aria-label="hreflang-checker: terminal recording of npx github:CrawlCove/hreflang-checker https://crawlcove.github.io/seo-test-site/intl/en/">
+<title>hreflang-checker: npx github:CrawlCove/hreflang-checker https://crawlcove.github.io/seo-test-site/intl/en/</title>
+<style>text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;font-size:14px;white-space:pre}
+.ln{opacity:0}
+@keyframes k0{0%,4.97%{opacity:0}4.98%,99.5%{opacity:1}100%{opacity:0}}.l0{animation:k0 8053ms linear infinite}
+@keyframes t0{0%,4.97%{width:0}24.84%,99.5%{width:744px}100%{width:0}}#c0{animation:t0 8053ms steps(88,end) infinite}
+@keyframes k1{0%,32.20%{opacity:0}32.21%,99.5%{opacity:1}100%{opacity:0}}.l1{animation:k1 8053ms linear infinite}
+@keyframes k2{0%,32.94%{opacity:0}32.95%,99.5%{opacity:1}100%{opacity:0}}.l2{animation:k2 8053ms linear infinite}
+@keyframes k3{0%,33.69%{opacity:0}33.70%,99.5%{opacity:1}100%{opacity:0}}.l3{animation:k3 8053ms linear infinite}
+@keyframes k4{0%,34.43%{opacity:0}34.44%,99.5%{opacity:1}100%{opacity:0}}.l4{animation:k4 8053ms linear infinite}
+@keyframes k5{0%,35.18%{opacity:0}35.19%,99.5%{opacity:1}100%{opacity:0}}.l5{animation:k5 8053ms linear infinite}
+@keyframes k6{0%,35.92%{opacity:0}35.93%,99.5%{opacity:1}100%{opacity:0}}.l6{animation:k6 8053ms linear infinite}
+@keyframes k7{0%,36.67%{opacity:0}36.68%,99.5%{opacity:1}100%{opacity:0}}.l7{animation:k7 8053ms linear infinite}
+@keyframes k8{0%,37.41%{opacity:0}37.42%,99.5%{opacity:1}100%{opacity:0}}.l8{animation:k8 8053ms linear infinite}
+@keyframes k9{0%,38.16%{opacity:0}38.17%,99.5%{opacity:1}100%{opacity:0}}.l9{animation:k9 8053ms linear infinite}
+@keyframes k10{0%,38.90%{opacity:0}38.91%,99.5%{opacity:1}100%{opacity:0}}.l10{animation:k10 8053ms linear infinite}
+@keyframes k11{0%,39.65%{opacity:0}39.66%,99.5%{opacity:1}100%{opacity:0}}.l11{animation:k11 8053ms linear infinite}
+@keyframes k12{0%,40.39%{opacity:0}40.40%,99.5%{opacity:1}100%{opacity:0}}.l12{animation:k12 8053ms linear infinite}
+@keyframes k13{0%,41.14%{opacity:0}41.15%,99.5%{opacity:1}100%{opacity:0}}.l13{animation:k13 8053ms linear infinite}
+@keyframes k14{0%,41.89%{opacity:0}41.90%,99.5%{opacity:1}100%{opacity:0}}.l14{animation:k14 8053ms linear infinite}
+@keyframes k15{0%,42.63%{opacity:0}42.64%,99.5%{opacity:1}100%{opacity:0}}.l15{animation:k15 8053ms linear infinite}
+@keyframes k16{0%,43.38%{opacity:0}43.39%,99.5%{opacity:1}100%{opacity:0}}.l16{animation:k16 8053ms linear infinite}
+@keyframes k17{0%,44.12%{opacity:0}44.13%,99.5%{opacity:1}100%{opacity:0}}.l17{animation:k17 8053ms linear infinite}
+</style>
+<defs><clipPath id="p0"><rect id="c0" x="39" y="68" height="20" width="0"/></clipPath></defs>
+<rect width="980" height="450" rx="12" fill="#0B0E16" stroke="#1E2533"/>
+<rect width="980" height="36" rx="12" fill="#121723"/><rect y="24" width="980" height="12" fill="#121723"/>
+<circle cx="22" cy="18" r="6" fill="#FF5C7A"/><circle cx="42" cy="18" r="6" fill="#FFB020"/><circle cx="62" cy="18" r="6" fill="#34F5C5"/>
+<text x="490" y="23" fill="#8A93A6" text-anchor="middle" style="font-size:13px">hreflang-checker</text>
+<g class="ln l0"><text x="22" y="83" fill="#22D3EE">$</text><g clip-path="url(#p0)"><text x="39" y="83" fill="#F2F5FA">npx github:CrawlCove/hreflang-checker https://crawlcove.github.io/seo-test-site/intl/en/</text></g></g>
+<text class="ln l1" x="22" y="103" fill="#C7CEDB">https://crawlcove.github.io/seo-test-site/intl/en/</text>
+<text class="ln l2" x="22" y="123" fill="#34F5C5">  HTTP 200, 3 hreflang tag(s)</text>
+<text class="ln l3" x="22" y="143" fill="#34F5C5">  ✓ en         https://crawlcove.github.io/seo-test-site/intl/en/  [html]</text>
+<text class="ln l4" x="22" y="163" fill="#34F5C5">  ✓ fr         https://crawlcove.github.io/seo-test-site/intl/fr/  [html]</text>
+<text class="ln l5" x="22" y="183" fill="#34F5C5">  ✓ de         https://crawlcove.github.io/seo-test-site/intl/de/  [html]</text>
+<text class="ln l6" x="22" y="203" fill="#C7CEDB">  self-referencing: yes   x-default: no   return tags checked: 2/2</text>
+<text class="ln l7" x="22" y="223" fill="#FF5C7A">  ✗ NO RETURN   fr         https://crawlcove.github.io/seo-test-site/intl/fr/  (its own hreflang tags do not</text>
+<text class="ln l8" x="22" y="243" fill="#FF5C7A">  list this page)</text>
+<text class="ln l9" x="22" y="263" fill="#34F5C5">  ✓ links back  de         https://crawlcove.github.io/seo-test-site/intl/de/</text>
+<text class="ln l10" x="22" y="283" fill="#C7CEDB"> </text>
+<text class="ln l11" x="22" y="303" fill="#C7CEDB">  ! missing-x-default: No x-default tag. Without one, visitors whose language matches nothing in the set get</text>
+<text class="ln l12" x="22" y="323" fill="#C7CEDB">  whatever Google picks.</text>
+<text class="ln l13" x="22" y="343" fill="#FF5C7A">  ✗ missing-return-tag: https://crawlcove.github.io/seo-test-site/intl/fr/ (hreflang=&quot;fr&quot;) does not link back</text>
+<text class="ln l14" x="22" y="363" fill="#FF5C7A">  to https://crawlcove.github.io/seo-test-site/intl/en/. Both pages must reference each other or Google</text>
+<text class="ln l15" x="22" y="383" fill="#FF5C7A">  ignores the pair.</text>
+<text class="ln l16" x="22" y="403" fill="#C7CEDB"> </text>
+<text class="ln l17" x="22" y="423" fill="#FF5C7A">1 error(s), 1 warning(s).</text>
+</svg>

@@ -1,0 +1,64 @@
+{
+ "recorded": "2026-11-20T00:05:07.839Z",
+ "steps": [
+  {
+   "show": "npx github:CrawlCove/hreflang-checker https://crawlcove.github.io/seo-test-site/intl/en/",
+   "exit": 1,
+   "ms": 232,
+   "lines": [
+    {
+     "t": 223,
+     "text": "https://crawlcove.github.io/seo-test-site/intl/en/"
+    },
+    {
+     "t": 223,
+     "text": "  HTTP 200, 3 hreflang tag(s)"
+    },
+    {
+     "t": 223,
+     "text": "  ✓ en         https://crawlcove.github.io/seo-test-site/intl/en/  [html]"
+    },
+    {
+     "t": 223,
+     "text": "  ✓ fr         https://crawlcove.github.io/seo-test-site/intl/fr/  [html]"
+    },
+    {
+     "t": 223,
+     "text": "  ✓ de         https://crawlcove.github.io/seo-test-site/intl/de/  [html]"
+    },
+    {
+     "t": 223,
+     "text": "  self-referencing: yes   x-default: no   return tags checked: 2/2"
+    },
+    {
+     "t": 223,
+     "text": "  ✗ NO RETURN   fr         https://crawlcove.github.io/seo-test-site/intl/fr/  (its own hreflang tags do not list this page)"
+    },
+    {
+     "t": 223,
+     "text": "  ✓ links back  de         https://crawlcove.github.io/seo-test-site/intl/de/"
+    },
+    {
+     "t": 223,
+     "text": ""
+    },
+    {
+     "t": 223,
+     "text": "  ! missing-x-default: No x-default tag. Without one, visitors whose language matches nothing in the set get whatever Google picks."
+    },
+    {
+     "t": 223,
+     "text": "  ✗ missing-return-tag: https://crawlcove.github.io/seo-test-site/intl/fr/ (hreflang=\"fr\") does not link back to https://crawlcove.github.io/seo-test-site/intl/en/. Both pages must reference each other or Google ignores the pair."
+    },
+    {
+     "t": 223,
+     "text": ""
+    },
+    {
+     "t": 223,
+     "text": "1 error(s), 1 warning(s)."
+    }
+   ]
+  }
+ ]
+}
