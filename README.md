@@ -8,7 +8,7 @@ Prefer a form? The same check runs in the browser at [crawlcove.com/tools/hrefla
 
 <img src="docs/demo.svg" width="980" alt="Terminal recording: checking the English page of the SEO test site finds the French alternate does not link back and no x-default">
 
-*Recorded from a real run against [seo-test-site](https://github.com/CrawlCove/seo-test-site), a public site with 54 planted SEO problems that you can test against too.*
+*Recorded from a real run against [seo-test-site](https://github.com/CrawlCove/seo-test-site), a public site full of planted SEO problems that you can test against too.*
 
 ## Quick start
 
